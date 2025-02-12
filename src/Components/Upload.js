@@ -34,6 +34,7 @@ function Upload() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [convertedBlob, setConvertedBlob] = useState(null); // State to store the converted XML file
+  const [dealInfo, setDealInfo] = useState("");
 
   const formRef = useRef(null);  // Ref for form element
 
@@ -104,7 +105,8 @@ function Upload() {
           notBefore,
           notAfter,
           multiplicationFactor,
-          lifestyle
+          lifestyle,
+          dealInfo
         );
 
         // Check if conversion was successful
@@ -404,6 +406,15 @@ function Upload() {
                     onChange={(option) => setMultiplicationFactor(option ? option.value : null)}
                     placeholder="Select..."
                     isSearchable={true}
+                  />
+                </Form.Group>
+                 <Form.Group className="mb-3">
+                  <Form.Label>Po Exclusive Deal</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={dealInfo}
+                    onChange={(e) => setDealInfo(e.target.value)}
+                    placeholder="Enter Deal Info..."
                   />
                 </Form.Group>
               </Col>
