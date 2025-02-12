@@ -12,7 +12,7 @@ function sanitizeKey(key) {
 return '';
 }
 
-function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender, ST_user, ticketType, poLocation, poType, poEDI, priceTag, ls, nb, na, mf, mls) {
+function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender, ST_user, ticketType, poLocation, poType, poEDI, priceTag, ls, nb, na, mf, mls,dealInfo) {
   const supplierName = supplier['value'];
   const workbook = XLSX.read(arrayBuffer, { type: 'array' });
   
@@ -101,6 +101,8 @@ function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender,
   const ticketTypeValue = ticketType ? ticketType : "";
   Product2.ele('Value', { AttributeID: "att_tool_tickettype" }).txt(ticketTypeValue);
   Product2.ele('Value', { AttributeID: "att_tool_brand" }).txt(brand ? brand.value : "");
+  Product2.ele('Value', { AttributeID: "att_tool_dealinfo" }).txt(dealInfo);
+
 
   const xmlString = root.end({ pretty: true });
 
